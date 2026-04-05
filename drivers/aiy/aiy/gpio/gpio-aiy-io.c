@@ -19,6 +19,7 @@
 #include <linux/device.h>
 #include <linux/err.h>
 #include <linux/gpio.h>
+#include <linux/gpio/driver.h>
 #include <linux/i2c.h>
 #include <linux/module.h>
 #include <linux/platform_device.h>
@@ -159,7 +160,7 @@ static int aiy_gpio_probe(struct platform_device *pdev)
 	if (!chip) return -ENOMEM;
 
 	chip->label = "gpio-aiy-io",
-	chip->owner = THIS_MODULE;
+	
 	chip->parent = &pdev->dev;
 	chip->request = aiy_gpio_request;
 	chip->free = aiy_gpio_free;
@@ -182,10 +183,10 @@ static int aiy_gpio_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int aiy_gpio_remove(struct platform_device *pdev)
+static void aiy_gpio_remove(struct platform_device *pdev)
 {
 	dev_info(&pdev->dev, "Driver removed\n");
-	return 0;
+	
 }
 
 static const struct of_device_id aiy_gpio_of_match[] = {
