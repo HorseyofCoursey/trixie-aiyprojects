@@ -1,3 +1,21 @@
+# Notes from HorseyofCoursey
+Once upon a time there was a kit that was a collaboration between Google and Raspberry Pi that came with a convenient board https://pinout.xyz/pinout/aiy_voice_bonnet a "do-it-yourself intelligent speaker".
+
+They have been paper weights for years as updates to OS's left this board behind. The most recent progress was from viraniac to make it work in Bulleye, but it didn't have full functionality with the microphone (someone please correct me if I'm wrong about that).
+
+So I forked viraniac's progress and continued to work on it to make it work in Trixie.
+
+What it took to make it work in Trixie:
+* 2 API renames in the sound driver and rt5645 codec
+* 1 probe signature fix in aiy-io-i2c
+* 3 platform driver remove() return type fixes across gpio, pwm, and adc
+* 1 missing header in gpio driver
+* Full pwm_chip API rewrite for the new 6.12 ownership model
+* 1 device tree compatible string fix for BCM2837
+* Makefiles converted to out-of-tree obj-m style
+
+There were other kit versions that had different hats but this is the only one I have. If anyone want to mail me there old hats to the USA I could try to get other versions to work too.
+
 # AIY Projects
 
 This repository contains an easy-to-use Python API for the [AIY Vision Kit][aiy-vision]
